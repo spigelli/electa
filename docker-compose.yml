@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  dev-db:
+    image: postgres:14.1-alpine
+    restart: "no"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    stop_signal: SIGTERM
+    ports:
+      - '5432:5432'
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+volumes:
+  dev-db-data:
+    driver: local
